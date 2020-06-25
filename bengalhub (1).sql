@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2020 at 09:56 PM
+-- Generation Time: Jun 25, 2020 at 07:38 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -98,7 +98,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (33, 'Can add dhaka_area', 9, 'add_dhaka_area'),
 (34, 'Can change dhaka_area', 9, 'change_dhaka_area'),
 (35, 'Can delete dhaka_area', 9, 'delete_dhaka_area'),
-(36, 'Can view dhaka_area', 9, 'view_dhaka_area');
+(36, 'Can view dhaka_area', 9, 'view_dhaka_area'),
+(37, 'Can add bd_gender', 10, 'add_bd_gender'),
+(38, 'Can change bd_gender', 10, 'change_bd_gender'),
+(39, 'Can delete bd_gender', 10, 'delete_bd_gender'),
+(40, 'Can view bd_gender', 10, 'view_bd_gender');
 
 -- --------------------------------------------------------
 
@@ -366,6 +370,27 @@ INSERT INTO `dashboard_bd_district` (`id`, `district`, `case`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dashboard_bd_gender`
+--
+
+CREATE TABLE `dashboard_bd_gender` (
+  `id` int(11) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `case` int(11) NOT NULL,
+  `death` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `dashboard_bd_gender`
+--
+
+INSERT INTO `dashboard_bd_gender` (`id`, `gender`, `case`, `death`) VALUES
+(1, 'male', 71, 77),
+(2, 'female', 29, 23);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `dashboard_dhaka_area`
 --
 
@@ -610,7 +635,9 @@ CREATE TABLE `django_admin_log` (
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2020-06-23 20:45:00.746720', '4', 'dsjdshdsh', 1, '[{\"added\": {}}]', 7, 1);
+(1, '2020-06-23 20:45:00.746720', '4', 'dsjdshdsh', 1, '[{\"added\": {}}]', 7, 1),
+(2, '2020-06-25 11:43:12.378255', '1', 'male', 1, '[{\"added\": {}}]', 10, 1),
+(3, '2020-06-25 11:43:32.420051', '2', 'female', 1, '[{\"added\": {}}]', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -636,6 +663,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (5, 'contenttypes', 'contenttype'),
 (7, 'dashboard', 'bangladesh'),
 (8, 'dashboard', 'bd_district'),
+(10, 'dashboard', 'bd_gender'),
 (9, 'dashboard', 'dhaka_area'),
 (6, 'sessions', 'session');
 
@@ -676,7 +704,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (17, 'sessions', '0001_initial', '2020-06-23 20:07:45.886057'),
 (18, 'dashboard', '0001_initial', '2020-06-23 20:32:55.793104'),
 (19, 'dashboard', '0002_bd_district', '2020-06-24 15:48:09.483745'),
-(20, 'dashboard', '0003_dhaka_area', '2020-06-24 18:51:50.922017');
+(20, 'dashboard', '0003_dhaka_area', '2020-06-24 18:51:50.922017'),
+(21, 'dashboard', '0004_bd_gender', '2020-06-25 11:40:22.274985');
 
 -- --------------------------------------------------------
 
@@ -759,6 +788,12 @@ ALTER TABLE `dashboard_bd_district`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dashboard_bd_gender`
+--
+ALTER TABLE `dashboard_bd_gender`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `dashboard_dhaka_area`
 --
 ALTER TABLE `dashboard_dhaka_area`
@@ -804,7 +839,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -837,6 +872,12 @@ ALTER TABLE `dashboard_bd_district`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
+-- AUTO_INCREMENT for table `dashboard_bd_gender`
+--
+ALTER TABLE `dashboard_bd_gender`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `dashboard_dhaka_area`
 --
 ALTER TABLE `dashboard_dhaka_area`
@@ -852,13 +893,13 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
