@@ -25,4 +25,14 @@ class Dhaka_area(models.Model):
 
     def __str__(self):
         return self.area
+
+class Bd_gender(models.Model):
+    gender = models.CharField(max_length=10)
+    case = models.IntegerField()
+    death = models.IntegerField()
+
+    def __str__(self):
+        return self.gender
+
+
 # Create your models here.
