@@ -18,6 +18,8 @@ def home(request):
     area_case = []
     gender_case = []
     gender_death = []
+    testcase_ratio = []
+
 
     bangladesh = Bangladesh.objects.values()
     bd_district = Bd_district.objects.values()
@@ -33,6 +35,7 @@ def home(request):
         test_case.append(bd['test_case'])
         death.append(bd['death'])
         recovered.append(bd['recovered'])
+        testcase_ratio.append((bd['case']*100)/bd['test_case'])
 
     for dist in bd_district:
         district.append(dist['district'])
@@ -50,7 +53,7 @@ def home(request):
                                                 'district':district,'district_case':district_case,
                                                 'date':date,'day':day,'case':case,'test_case':test_case,
                                                 'death':death,'recovered':recovered,'gender_case':gender_case,
-                                                'gender_death':gender_death
+                                                'gender_death':gender_death,'bd_district':bd_district,'testcase_ratio':testcase_ratio
                                                 })
 # Create your views here.
 # Create your views here.

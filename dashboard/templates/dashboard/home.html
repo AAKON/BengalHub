@@ -11,6 +11,7 @@
 
   <title>SB Admin 2 - Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <!-- Custom fonts for this template-->
   <link href="static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,6 +19,7 @@
 
   <!-- Custom styles for this template-->
   <link href="static/assets/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -39,6 +41,7 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
@@ -347,8 +350,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Case</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{case|last}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -364,8 +367,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Test Case</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{test_case|last}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -381,10 +384,10 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Recovered</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{recovered|last}}</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -407,8 +410,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Death</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{death|last}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -428,28 +431,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <div class="row">
-
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
+                <div  class="card-body">
                 <div class="chart-area">
-                  <div id="chart_bd">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <div class="card-body">
-                  <div class="chart-area">
-                    <div id="chart_gender_death">
+                    <div id="chart_bd">
                     </div>
-                  </div>
                 </div>
               </div>
+              </div>
             </div>
-
           </div>
 
 
@@ -458,10 +464,12 @@
 
             <div class="col-xl-6 col-lg-7">
               <div class="card shadow mb-4">
+                <div class="card-body">
                 <div class="chart-area">
-                  <div id="chart_district">
+                  <div id="chart_gender_death">
                   </div>
                 </div>
+              </div>
               </div>
             </div>
 
@@ -469,13 +477,12 @@
               <div class="card shadow mb-4">
                 <div class="card-body">
                   <div class="chart-area">
-                    <div id="chart_dhaka">
+                    <div id="chart_gender_case">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
 
 
@@ -483,124 +490,102 @@
 
 
 
-
-
-
-
-
-
-
-          <!-- Content Row -->
           <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-                  <div class="card-body">
-              <!-- Project Card Example -->
-              <div class="chart-area">
-                <div id="chart_district">
-                </div>
-              </div>
-            </div>
-              <!-- Color System -->
-              <div class="row">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      Primary
-                      <div class="text-white-50 small">#4e73df</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      Success
-                      <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      Info
-                      <div class="text-white-50 small">#36b9cc</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      Warning
-                      <div class="text-white-50 small">#f6c23e</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      Danger
-                      <div class="text-white-50 small">#e74a3b</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-light text-black shadow">
-                    <div class="card-body">
-                      Light
-                      <div class="text-black-50 small">#f8f9fc</div>
-                    </div>
-                  </div>
-              </div>
-              <div class="col-lg-6 mb-4">
-                <div class="card bg-dark text-white shadow">
-                  <div class="card-body">
-                      Dark
-                      <div class="text-white-50 small">#5a5c69</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            </div>
-
-            <div class="col-lg-6 mb-4">
-
-              <!-- Illustrations -->
+            <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                </div>
-                <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="static/assets/img/undraw_posting_photo.svg" alt="">
-                  </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                <div  class="card-body">
+                <div class="chart-area">
+                    <div id="chart_testratio">
+                    </div>
                 </div>
               </div>
-
-              <!-- Approach -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                  <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
-                </div>
               </div>
-
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+            <tr>
+              <th>District</th>
+              <th>Confirmed</th>
+
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>District</th>
+              <th>Confirmed</th>
+
+            </tr>
+          </tfoot>
+          <tbody>
+
+              {% for dist in bd_district %}
+              <tr>
+                <td>{{dist.district}}</td>
+                <td>{{dist.case}}</td>
+
+              </tr>
+              {% endfor %}
+          </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
         <!-- /.container-fluid -->
@@ -664,6 +649,13 @@
   <!-- Page level custom scripts -->
   <script src="static/assets/js/demo/chart-area-demo.js"></script>
 
+  <script src="static/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="static/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="static/assets/js/demo/datatables-demo.js"></script>
+
+
 
 
 
@@ -706,7 +698,7 @@
       categories: {{dhaka_area|safe}},
       labels: {
           show: true,
-          
+
           rotateAlways: false
         }
     },
@@ -718,6 +710,8 @@
 
 
   </script>
+
+
 
 
 
@@ -848,16 +842,18 @@
 
 
 
-  <script type="text/javascript">
+<script type="text/javascript">
   var options = {
     series: {{gender_death|safe}},
+    colors: ['#8E1C0D', '#E91E63'],
     chart: {
     width: '100%',
+    height:'100%',
     type: 'donut',
     dropShadow: {
       enabled: true,
       color: '#111',
-      top: -1,
+      top: 15,
       left: 3,
       blur: 3,
       opacity: 0.2
@@ -868,12 +864,14 @@
   },
   plotOptions: {
     pie: {
+      customScale: .9,
       donut: {
         labels: {
           show: true,
+          position: 'bottom',
           total: {
-            showAlways: true,
-            show: true
+            showAlways: false,
+            show: false
           }
         }
       }
@@ -881,6 +879,7 @@
   },
   labels: ["Male","Female"],
   dataLabels: {
+
     dropShadow: {
       blur: 3,
       opacity: 0.8
@@ -903,13 +902,19 @@
     palette: 'palette2'
   },
   title: {
-    text: "Bangladesh Gender Wise Case"
+    text: "Bangladesh Gender Wise Death",
+    style: {
+      fontSize:  '14px',
+      fontWeight:  'bold',
+      fontFamily:  undefined,
+      color:  '#F54A4A'
+    },
   },
   responsive: [{
-    breakpoint: 480,
+    breakpoint: 380,
     options: {
       chart: {
-        width: "100%"
+
       },
       legend: {
         position: 'bottom'
@@ -924,85 +929,285 @@
   </script>
 
 
-
-
-
-
   <script type="text/javascript">
   var options = {
-            series: [{
-            name: 'Case',
+    series: {{gender_case|safe}},
+    chart: {
+    width: '100%',
+    height:'100%',
+    type: 'donut',
+    dropShadow: {
+      enabled: true,
+      color: '#111',
+      top: 15,
+      left: 3,
+      blur: 3,
+      opacity: 0.2
+    }
+  },
+  stroke: {
+    width: 0,
+  },
+  plotOptions: {
+    pie: {
+      customScale: .9,
+      donut: {
+        labels: {
+          show: true,
+          position: 'bottom',
+          total: {
+            showAlways: false,
+            show: false
+          }
+        }
+      }
+    }
+  },
+  labels: ["Male","Female"],
+  dataLabels: {
+
+    dropShadow: {
+      blur: 3,
+      opacity: 0.8
+    }
+  },
+  fill: {
+  type: 'pattern',
+    opacity: 1,
+    pattern: {
+      enabled: true,
+      style: ['circles','slantedLines'],
+    },
+  },
+  states: {
+    hover: {
+      filter: 'none'
+    }
+  },
+  theme: {
+    palette: 'palette2'
+  },
+  title: {
+    text: "Bangladesh Gender Wise Case",
+    style: {
+      fontSize:  '14px',
+      fontWeight:  'bold',
+      fontFamily:  undefined,
+      color:  '#26E7A6'
+    },
+
+  },
+  responsive: [{
+    breakpoint: 380,
+    options: {
+      chart: {
+
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }]
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart_gender_case"), options);
+  chart.render();
+
+    </script>
+
+
+
+
+<script type="text/javascript">
+  var options = {
+          series: [{
+            name: "Case",
             data: {{case|safe}}
-          }, {
-            name: 'Test Case',
-            data: {{test_case|safe}}
-          }, {
-            name: 'Recovered',
-            data: {{recovered|safe}}
-          }, {
-            name: 'Death',
-            data:{{death|safe}}
-          }],
-            chart: {
-            type: 'bar',
-            height: '100%',
-            stacked: true,
-            toolbar: {
-              show: true
-            },
-
-            zoom: {
-              enabled: true
-            }
           },
-          responsive: [{
-            breakpoint: 480,
-            options: {
-
-              legend: {
-                position: 'bottom',
-                offsetX: -10,
-                offsetY: 0
+          {
+            name: "Death",
+            data: {{death|safe}}
+          },
+          {
+            name: "Recovered",
+            data: {{recovered|safe}}
+          }
+        ],
+          chart: {
+          height: '100%',
+          width:'100%',
+          type: 'line',
+          zoom: {
+            enabled: false
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: [5, 5, 5],
+          curve: 'smooth',
+          dashArray: [0, 0, 0]
+        },
+        title: {
+          text: 'Bangladesh Covid-19 Situation',
+          align: 'left'
+        },
+        legend: {
+          tooltipHoverFormatter: function(val, opts) {
+            return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
+          }
+        },
+        markers: {
+          size: 0,
+          hover: {
+            sizeOffset: 6
+          }
+        },
+        yaxis: {
+      // show: true,
+      showAlways: false,
+      labels: {
+          show: false
+        }
+    },
+        xaxis: {
+          type: 'datetime',
+          categories: {{date|safe}},
+        },
+        tooltip: {
+          y: [
+            {
+              title: {
+                formatter: function (val) {
+                  return val + " (mins)"
+                }
+              }
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val + " per session"
+                }
+              }
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val;
+                }
               }
             }
-          }],
+          ]
+        },
+        grid: {
+          borderColor: '#f1f1f1',
+        }
+        };
 
-          dataLabels: {
-              enabled: false,
-          },
-          plotOptions: {
-            bar: {
-              horizontal: false,
-            },
+        var chart = new ApexCharts(document.querySelector("#chart_bd"), options);
+        chart.render();
 
-          },
 
-          xaxis: {
-            type: 'datetime',
-            categories:{{date|safe}},
-            position: 'top',
-          },
-          legend: {
-            position: 'right',
-            offsetY: 40
-          },
-          fill: {
-            opacity: 1
-          }
-          };
-
-          var chart = new ApexCharts(document.querySelector("#chart_bd"), options);
-          chart.render();
 
 
   </script>
 
 
+  <script type="text/javascript">
+    var options = {
+            series: [{
+              name: "Case",
+              data: {{testcase_ratio}},
+
+            }
+
+          ],
+
+            chart: {
+            height: '100%',
+            width:'100%',
+            type: 'bar',
+
+            zoom: {
+              enabled: false
+            },
+          },
+          plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded',
+
+          },
+        },
+          dataLabels: {
+            enabled: false
+          },
+
+          title: {
+            text: 'Bangladesh Test Case Ratio',
+            align: 'left'
+          },
+          legend: {
+            tooltipHoverFormatter: function(val, opts) {
+              return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
+            }
+          },
+          markers: {
+            size: 0,
+            hover: {
+              sizeOffset: 6
+            }
+          },
+          yaxis: {
+        // show: true,
+        showAlways: false,
+        labels: {
+            show: false
+          }
+      },
+          xaxis: {
+            type: 'datetime',
+            categories: {{date|safe}},
+          },
+          tooltip: {
+            y: [
+              {
+                title: {
+                  formatter: function (val) {
+                    return val + " (mins)"
+                  }
+                }
+              },
+              {
+                title: {
+                  formatter: function (val) {
+                    return val + " per session"
+                  }
+                }
+              },
+              {
+                title: {
+                  formatter: function (val) {
+                    return val;
+                  }
+                }
+              }
+            ]
+          },
+          grid: {
+            borderColor:'#FF4560',
+          }
+          };
+
+          var chart = new ApexCharts(document.querySelector("#chart_testratio"), options);
+          chart.render();
 
 
 
 
-
+    </script>
 
 
 
